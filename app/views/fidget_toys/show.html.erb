@@ -1,0 +1,12 @@
+
+<h3><%= @toy.name %></h3>
+<h3><%= @toy.image %></h3>
+<h3><%= @toy.description %></h3>
+<h3><%= number_to_currency(@toy.price) %></h3>
+<h3><%= @toy.sale_message %></h3>
+<h3> Tax: <%= number_to_currency(@toy.tax) %></h3>
+
+<a href="/toys/<%= @toy.id %>/edit">Edit Toy</a>
+<%= link_to "Edit Toy", "/toys/#{ @toy.id }/edit" %>
+<%= link_to "Delete", "/toys/#{ @toy.id }", method: :delete %>
+

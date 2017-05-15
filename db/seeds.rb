@@ -12,16 +12,16 @@
 # item.save
 
 toy = Toy.new({name: "Gold Spinner", image: "https://goo.gl/WuWtjT", description: "For those expensive tastes", price: "1000000"})
-item.save
+toy.save
 
 toy = Toy.new({name: "Bike Spinner", image: "https://goo.gl/olCnOL", description: "Made out of a broken fixie bike", price: "50"})
-item.save
+toy.save
 
 toy = Toy.new({name: "Shuriken Spinner", image: "https://goo.gl/StT7Gr", description: "Doubles as a weapon", price: "70"})
-item.save
+toy.save
 
 toy = Toy.new({name: "Ball Bearing Spinner", image: "https://goo.gl/PNzszk", description: "More ball bearings for extra spin", price: "30"})
-item.save
+toy.save
 
 toy = Toy.new({name: "LED Spinner", image: "https://goo.gl/WuWtjT", description: "For those expensive tastes", price: "1000000"})
-item.save
+toy.save

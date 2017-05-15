@@ -1,0 +1,9 @@
+<h1>Toy Test</h1>
+<% @toys.each do |toy| %>
+
+<h2>Product: <%= toy.name %> </h2>
+<h2>Image: <img src="<%= toy.image %>"> </h2>
+<h2>Description: <%= toy.description %> </h2>
+<h2>Price: <%= toy.price %> </h2>
+<hr>
+<% end %>
