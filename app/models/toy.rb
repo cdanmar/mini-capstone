@@ -1,4 +1,5 @@
 class Toy < ApplicationRecord
+  belongs_to :supplier
   def sale_message
     if price < 10
       "Discount Items!"
