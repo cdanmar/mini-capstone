@@ -1,12 +1,38 @@
+<section>
+    <div class="row">    
+      <div class="col-sm-8 col-sm-offset-2">
+        <div class="toy_single row">
+          <h2><%= @toy.name %></h2>
+          <div class="col-md-6">
+            <% if @toy.discounted? %>
+              <h4>Discount Item!</h4>
+            <% else %>
+              <h4>Everyday Value!!</h4>
+            <% end %>
+            <p class="<%= "red-price" if @toy.discounted? %>">Price: <%= number_to_currency(@toy.price) %></p>
+            <p>Tax: <%= number_to_currency(@toy.tax) %></p>
+            <p>Total: <%= number_to_currency(@toy.total) %></p>
+            <p>Description: <%= @toy.description %></p>
+          </div>
+          <div class="col-md-6">
+            <img src="<%= @toy.first_image_url %>" alt="<%= @toy.name %>" class="img-responsive show-toy">
+          </div>
 
-<h3><%= @toy.name %></h3>
-<h3><%= @toy.image %></h3>
-<h3><%= @toy.description %></h3>
-<h3><%= number_to_currency(@toy.price) %></h3>
-<h3><%= @toy.sale_message %></h3>
-<h3> Tax: <%= number_to_currency(@toy.tax) %></h3>
+          <h5>supplied by <%= @toy.supplier.name %></h5>
 
-<a href="/toys/<%= @toy.id %>/edit">Edit Toy</a>
-<%= link_to "Edit Toy", "/toys/#{ @toy.id }/edit" %>
-<%= link_to "Delete", "/toys/#{ @toy.id }", method: :delete %>
-
+          <%= form_tag "/orders", method: :post do %>
+            <div>
+              Quantity: <input type="text" name="quantity">
+            </div>
+            <div>
+              Toy ID: <input type="text" name="toy_id">
+            </div>
+            <input type="submit" value="Buy Now">
+          <% end %>
+          
+          <%= link_to "Edit", "/toys/#{@toy.id}/edit", class: "btn btn-success" %>
+          <%= link_to "Delete", "/toys/#{@toy.id}", {method: :delete, class: "btn btn-danger" }%>
+        </div>
+      </div>
+    </div>
+  </section>

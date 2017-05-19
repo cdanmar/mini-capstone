@@ -2,16 +2,14 @@
 
 <%= form_tag "/toys/#{@toy.id}", method: :patch do %>
   <div>
-    Name: <input type="text" name="Name" value="<%= @toy.name %>" >
+    Name: <input type="text" name="name" value="<%= @toy.name %>" >
+  </div>
+
+  <div>
+    Description: <input type="text" name="description" value="<%= @toy.description %>" >
   </div>
   <div>
-    Image: <input type="text" name="Image". value="<%= @toy.image %>" >
+    Price: <input type="text" name="price" value="<%= @toy.price %>" >
   </div>
-  <div>
-    Description: <input type="text" name="Description" value="<%= @toy.description %>" >
-  </div>
-  <div>
-    Price: <input type="text" name="Price" value="<%= @toy.price %>" >
-  </div>
-  <input type="submit" value="Create Toy"
+  <input type="submit" value="Edit Toy">
 <% end %>

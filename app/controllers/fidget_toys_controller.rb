@@ -7,7 +7,7 @@ class FidgetToysController < ApplicationController
     search_term = params[:search_term]
 
     if search_term
-      @toys = Toy.where("name iLIKE ? OR description iLIKE ?", "%#{search_term}", "%#{search_term}")
+      @toys = @toys.where("name iLIKE ? OR description iLIKE ?", "%#{search_term}", "%#{search_term}")
     end
 
     if discounted
@@ -15,7 +15,7 @@ class FidgetToysController < ApplicationController
     end
 
     if sort_attribute && sort_order
-      @ptoys = @toys.order(sort_attribute => sort_order)
+      @toys = @toys.order(sort_attribute => sort_order)
     elsif sort_attribute
       @toys = @toys.order(sort_attribute)
     end
@@ -23,8 +23,9 @@ class FidgetToysController < ApplicationController
 
 
   def show
-    toy_id = params[:id]
-    @toy = Toy.find_by(id: toy_id)
+    @toy = Toy.find(params[:id])
+    # toy_id = params[:id]
+    # @toy = Toy.find_by(id: toy_id)
   end
 
 
@@ -33,7 +34,7 @@ class FidgetToysController < ApplicationController
   end
 
   def create
-    toy = Toy.new(name: params[:name], image: params[:image], description: params[:description], price: params[:price])
+    toy = Toy.new(name: params[:name], description: params[:description], price: params[:price], supplier_id: params[:supplier][:supplier_id])
     toy.save
     flash[:success] = "Toy Succesfully Created"
     redirect_to "/toys/#{ toy.id }"
@@ -45,10 +46,10 @@ class FidgetToysController < ApplicationController
 
   def update
     toy = Toy.find(params[:id])
-    recipe.assign_attributes(name: params[:name], image: params[:image], description: params[:description], price: params[:price])
+    toy.assign_attributes(name: params[:name], description: params[:description], price: params[:price])
     toy.save
     flash[:success] = "Toy Succesfully Updated"
-    redirect_to "/toys/#{ toy.id}"
+    redirect_to "/toys/#{toy.id}"
   end
 
   def destroy

@@ -4,7 +4,8 @@
       <div class="thumbnail well">
         <h2><a href="/toys/<%= toy.id %>"><%= toy.name %></a></h2>
         <h4><%= toy.name %></h4>
-        <a href="/toys/<%= toy.id %>" title="View toy"><img src="<%= toy.first_image_url %>" alt="<%= toy.name %>" class="img-responsive toy_single_image"></a>
+        <h3><%= toy.image %></h3>
+        <img src="<%= toy.image %>" alt="<%= toy.name %>">
         <h3><%= toy.description %></h3>
         <h3><%= toy.price %></h3>
       </div>

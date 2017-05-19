@@ -1,5 +1,8 @@
 class Toy < ApplicationRecord
   belongs_to :supplier
+  has_many :images
+  has_many :orders
+
   def sale_message
     if price < 10
       "Discount Items!"
@@ -14,5 +17,18 @@ class Toy < ApplicationRecord
 
   def tax
     price * 0.09
-  end 
+  end
+
+  def total
+    price + tax
+  end
+
+  def first_image_url
+    image_collection = images
+    if image_collection.length == 0
+      "http://nursevibe.com/images/clients-pic/2.png"
+    else
+      image_collection.first.first.url
+    end
+  end
 end
