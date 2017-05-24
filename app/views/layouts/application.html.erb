@@ -35,6 +35,9 @@
               <li><a href="/toys?sort=price">Sort By Price, lowest to highest</a></li>
               <li><a href="/toys?sort=price&sort_order=desc">Sort By Price, highest to lowest</a></li>
               <li role="separator" class="divider"></li>
+              <% Category.all.each do |category| %>
+              <li><a href="/toys?category=<%= category.name %>"><%= category.name.titleize %></a></li>
+              <% end %>
               <li><a href="#">Separated link</a></li>
               <li role="separator" class="divider"></li>
               <li><a href="#">One more separated link</a></li>

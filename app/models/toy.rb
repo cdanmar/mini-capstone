@@ -3,6 +3,12 @@ class Toy < ApplicationRecord
   has_many :images
   has_many :orders
 
+  has_many :category_toys
+  has_many :categories, through: :category_toys
+
+  has_may :carted_products
+  has_many :order, through: :carted_products
+
   def sale_message
     if price < 10
       "Discount Items!"
@@ -30,5 +36,9 @@ class Toy < ApplicationRecord
     else
       image_collection.first.first.url
     end
+  end
+
+  def stringify_categories
+    categories.map { |category| category.name.titleize }.join(", ")
   end
 end

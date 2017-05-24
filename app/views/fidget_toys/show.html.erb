@@ -13,10 +13,12 @@
             <p>Tax: <%= number_to_currency(@toy.tax) %></p>
             <p>Total: <%= number_to_currency(@toy.total) %></p>
             <p>Description: <%= @toy.description %></p>
+            <p>Categories: <%= @toy.stringify_categories %></p>
           </div>
           <div class="col-md-6">
             <img src="<%= @toy.first_image_url %>" alt="<%= @toy.name %>" class="img-responsive show-toy">
           </div>
+
 
           <h5>supplied by <%= @toy.supplier.name %></h5>
 
@@ -25,9 +27,10 @@
               Quantity: <input type="text" name="quantity">
             </div>
             <div>
-              Toy ID: <input type="text" name="toy_id">
+              <%= label_tag :toy_id %>
+              <%= hidden_field_tag :toy_id, @toy.id %>
             </div>
-            <input type="submit" value="Buy Now">
+            <input type="submit" value="Add To Cart">
           <% end %>
           
           <%= link_to "Edit", "/toys/#{@toy.id}/edit", class: "btn btn-success" %>

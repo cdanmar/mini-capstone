@@ -5,6 +5,11 @@ class FidgetToysController < ApplicationController
     sort_order = params[:sort_order]
     discounted = params[:discount]
     search_term = params[:search_term]
+    category = params[:category]
+
+    if category
+      @toys = Category.find_by(name: category).toys
+    end
 
     if search_term
       @toys = @toys.where("name iLIKE ? OR description iLIKE ?", "%#{search_term}", "%#{search_term}")
