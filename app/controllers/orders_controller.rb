@@ -1,20 +1,29 @@
 class OrdersController < ApplicationController
   def create
-    toy = Toy.find(params[:toy_id])
-    calculated_subtotal = toy.price * params[:quantity].to_i
-    calculated_tax = calculated_subtotal * 0.09
-    calculated_total = calculated_subtotal + calculated_tax
+    carted_products = current_user.cart 
 
-    order = Order.new(toy_id: params[:toy_id],
-                      user_id: current_user.id,
-                      quantity: params[:quantity],
-                      subtotal: calculated_subtotal,
-                      tax: calculated_tax,
-                      total: calculated_total
-                      )
-    if order.save
-      redirect_to "/orders/#{order.id}" 
+    subtotal = 0
+
+    carted_products.each do |carted_products|
+      subtotal += carted_product.product.price * carted_product.quantity
     end
+
+    tax = subtotal * 0.09
+    total = subtotal + tax
+
+
+    order = Order.new(
+                      user_id: current_user.id,
+                      subtotal: ,
+                      tax: ,
+                      total:
+                      )
+
+    order.save
+
+    carted_products.update_all(status: "purchased", order_id: order.id )
+
+    redirect_to "/orders/#{order.id}"
   end
   def show
     @order = Order.find(params[:id])

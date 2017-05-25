@@ -22,7 +22,7 @@
 
           <h5>supplied by <%= @toy.supplier.name %></h5>
 
-          <%= form_tag "/orders", method: :post do %>
+          <%= form_tag "/carted_products", method: :post do %>
             <div>
               Quantity: <input type="text" name="quantity">
             </div>

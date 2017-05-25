@@ -1,0 +1,14 @@
+<header>Your Cart</header>
+<div class="row">
+  <% @carted_products.each do |carted_product| %>
+    <div class="col-md-4">
+      <div class="thumbnail well">
+        <h2><a href="/toys/<%= carted_product.toy.id %>"><%= carted_product.toy.name %></a></h2>
+        <h4><%= carted_product.toy.name %></h4>
+        <a href="/toys/<%= carted_product.toy.id %>" title="View toy"><img src="<%= carted_product.toy.first_image_url %>" alt="<%= carted_product.toy.name %>" class="img-responsive toy_single_image"></a>
+        <h3><%= carted_product.toy.description %></h3>
+        <h3><%= number_to_currency(carted_product.toy.price) %></h3>
+      </div>
+    </div>
+  <% end %>
+</div> 
