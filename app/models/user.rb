@@ -2,7 +2,7 @@ class User < ApplicationRecord
   has_secure_password
   
   has_many :orders
-  had_many :carted_products
+  has_many :carted_products
   has_many :toys, through: :carted_products
 
   def cart

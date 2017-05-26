@@ -9,6 +9,12 @@ class Toy < ApplicationRecord
   has_many :carted_products
   has_many :orders, through: :carted_products
 
+  validates :name, presence: true
+  validates :name, uniqueness: true
+  validates :price, presence: true
+  validates :price, numericality: true
+  validates :description, presence: true
+
   def sale_message
     if price < 10
       "Discount Items!"

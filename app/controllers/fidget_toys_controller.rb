@@ -1,4 +1,6 @@
 class FidgetToysController < ApplicationController
+  before_action :authenticate_admin!, except: [:index, :show, :random]
+
   def index
     @toys = Toy.all
     sort_attribute = params[:sort]
@@ -29,20 +31,22 @@ class FidgetToysController < ApplicationController
 
   def show
     @toy = Toy.find(params[:id])
-    # toy_id = params[:id]
-    # @toy = Toy.find_by(id: toy_id)
   end
 
 
   def new
-
+    @toy = Toy.new
   end
 
   def create
     toy = Toy.new(name: params[:name], description: params[:description], price: params[:price], supplier_id: params[:supplier][:supplier_id])
-    toy.save
-    flash[:success] = "Toy Succesfully Created"
-    redirect_to "/toys/#{ toy.id }"
+    if toy.save
+      flash[:success] = "Toy Succesfully Created"
+      redirect_to "/toys/#{ toy.id }"
+    else
+      @error = product.errors.full_messages
+      redirect_to 'new.html.erb'
+    end
   end
 
   def edit
