@@ -5,7 +5,7 @@ class CartedProductsController < ApplicationController
     if current_user && current_user.cart.any?
      @carted_products = current_user.cart
    else
-    flash[:warning] = "Why don't you add something to your cart, dude."
+    flash[:warning] = "Cart Empty"
     redirect_to '/'
     end
   end

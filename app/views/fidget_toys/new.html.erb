@@ -1,21 +1,28 @@
 <% @toy.errors.full_messages.each do |error| %>
   <h2><%= error %></h2>
-  <% end %>
-
-
-<h1>New Toy</h1>
-
-<%= form_tag "/toys", method: :post do %>
-  <div>
-    Name: <input type="text" name="name" value="<%= @product.name %>">
-  </div>
-  <div>
-    Description: <input type="text" name="description" value="<%= @product.description %>">
-  </div>
-  <div class="black-text">
-    Supplier: <%= collection_select :supplier, :supplier_id, Supplier.all, :id, :name %>
-  <div>
-    Price: <input type="text" name="price" value="<%= @product.price %>">
-  </div>
-  <input type="submit" value="Create toy">
 <% end %>
+
+<section>
+     <div class="row">
+       <div class="col-sm-8 col-sm-offset-2">
+         <div class="toy_single">
+           <h2>Create a new toy:</h2>
+           <%= form_tag '/toys', method: :post do %>
+             <div class="form-group">
+               Name: <input class="form-control" type="text" name="name" value="<%= @toy.name %>">
+             </div>
+             <div class="form-group">
+               Price: <input class="form-control" type="text" name="price" value="<%= @toy.price %>">
+             </div>
+             <div class="form-group">
+               Supplier: <%= collection_select :supplier, :supplier_id, Supplier.all, :id, :name, {}, class: "form-control" %>
+             </div>
+             <div class="form-group">
+               Description: <input class="form-control" type="text" name="description" value="<%= @toy.description %>"> 
+             </div>
+             <input type="submit" value="Process Toy">
+           <% end %>
+         </div>
+       </div>
+     </div>
+   </section>
